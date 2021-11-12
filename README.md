@@ -1,6 +1,6 @@
 # distribution Google Logging Metric Module
 
-This module creates a Distribution Google Logging Metric module. For information on google logging metrics, refer to the following [documentation](https://cloud.google.com/logging/docs/logs-based-metrics).
+This module creates a Distribution Google Logging Metric. For information on google logging metrics, refer to the following [documentation](https://cloud.google.com/logging/docs/logs-based-metrics).
 
 This module is intended to simplify the distribution logging metric resource creation via terraform. Documentation on the actual terraform resource definition can be found [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_metric).
 
@@ -20,7 +20,9 @@ Metrics can be defined with one or more `labels` placed under the `labels` defin
 
 ```terraform
 module "metric" {
-  source                   = "<source>"
+  source                   = "ammilam/metric/distribution"
+  version                  = "0.1.1"
+  # insert the 6 required variables here
   metric_project_id        = "" # (required) project_id for the logging metric
   metric_name              = "" # (required) metric name
   filter                   = "" # (required) filter for the logging metric
@@ -49,7 +51,8 @@ module "metric" {
 # this metric allows for cost analysis of gcp projects
 
 module "billing_metric" {
-  source                   = "<source>"
+  source                   = "ammilam/metric/distribution"
+  version                  = "0.1.1"
   metric_name              =  "billing-insights"
   metric_project_id        = var.base_project_id
   filter                   = "resource.type=\"cloud_function\" jsonPayload.ppsid!=null"
