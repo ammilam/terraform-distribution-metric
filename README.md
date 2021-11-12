@@ -21,7 +21,7 @@ Metrics can be defined with one or more `labels` placed under the `labels` defin
 ```terraform
 module "metric" {
   source                   = "ammilam/metric/distribution"
-  version                  = "0.1.1"
+  version                  = "0.1.2"
   # insert the 6 required variables here
   metric_project_id        = "" # (required) project_id for the logging metric
   metric_name              = "" # (required) metric name
@@ -41,55 +41,4 @@ module "metric" {
   ]
 }
 
-```
-
-### Example Distribution Metric Implementation
-
-```terraform
-
-# adds logging metric that creates metrics from billing insights data
-# this metric allows for cost analysis of gcp projects
-
-module "billing_metric" {
-  source                   = "ammilam/metric/distribution"
-  version                  = "0.1.1"
-  metric_name              =  "billing-insights"
-  metric_project_id        = var.base_project_id
-  filter                   = "resource.type=\"cloud_function\" jsonPayload.ppsid!=null"
-  value_log_message_object = "jsonPayload.total_exact"
-  metric_kind              = "CUMULATIVE"
-  unit                     = "usd"
-  labels = [
-    {
-      key                = "env"
-      label_value_type   = "STRING"
-      description        = "env label from gcp project"
-      log_message_object = "jsonPayload.env"
-    },
-    {
-      key                = "month"
-      label_value_type   = "STRING"
-      description        = "month label from gcp project"
-      log_message_object = "jsonPayload.month"
-    },
-    {
-      key                = "name"
-      label_value_type   = "STRING"
-      description        = "name label from gcp project"
-      log_message_object = "jsonPayload.name"
-    },
-    {
-      key                = "team"
-      label_value_type   = "STRING"
-      description        = "team label from gcp project"
-      log_message_object = "jsonPayload.team"
-    },
-    {
-      key                = "ppsid"
-      label_value_type   = "STRING"
-      description        = "ppsid label from gcp project"
-      log_message_object = "jsonPayload.ppsid"
-    },
-  ]
-}
 ```
