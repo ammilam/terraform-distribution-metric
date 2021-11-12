@@ -1,4 +1,4 @@
-# distribution Google Logging Metric Module
+# Distribution Google Logging Metric Module
 
 This module creates a Distribution Google Logging Metric. For information on google logging metrics, refer to the following [documentation](https://cloud.google.com/logging/docs/logs-based-metrics).
 
