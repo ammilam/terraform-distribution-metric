@@ -21,7 +21,7 @@ Metrics can be defined with one or more `labels` placed under the `labels` defin
 ```terraform
 module "metric" {
   source                   = "ammilam/metric/distribution"
-  version                  = "0.1.2"
+  version                  = "0.1.3"
   # insert the 6 required variables here
   metric_project_id        = "" # (required) project_id for the logging metric
   metric_name              = "" # (required) metric name
